@@ -1,5 +1,6 @@
 ﻿
 using Entities.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Repositories.Contracts;
 
 namespace Repositories
@@ -11,6 +12,12 @@ namespace Repositories
 
         }
 
+        public void CreateProduct(Product product) => Create(product);
+
+
+        public void DeleteOneProduct(Product product) => Remove(product);
+
+
         public IQueryable<Product> GetAllProducts(bool trackChanges) => FindAll(trackChanges);
         
         //Interface
@@ -18,5 +25,7 @@ namespace Repositories
         {
             return FindByCondition(p => p.ProductId.Equals(id), trackChanges);
         }
+
+        public void UpdateOneProduct(Product entity) => Update(entity);
     }
 }
